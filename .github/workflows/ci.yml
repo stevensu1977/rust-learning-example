@@ -1,0 +1,35 @@
+name: Rust Static Builds
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-hello-cargo:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build hello_cargo
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: Dockerfile
+        build-args: |
+          PROJECT_DIR=hello_cargo
+        push: false
+        platforms: linux/amd64
+
+    - name: Upload hello_cargo binary artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: hello_cargo
+        path: ./hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo

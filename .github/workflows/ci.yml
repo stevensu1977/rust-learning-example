@@ -13,13 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: clux/muslrust:stable
+
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3
 
-    - name: Install Rust with musl target
-      run: |
-        rustup target add x86_64-unknown-linux-musl
+    #- name: Install Rust with musl target
+    #  run: |
+    #    rustup target add x86_64-unknown-linux-musl
 
     - name: Build hello_cargo
       run: |

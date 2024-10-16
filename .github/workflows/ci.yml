@@ -25,12 +25,16 @@ jobs:
         file: Dockerfile
         build-args: |
           PROJECT_DIR=hello_cargo
-        output: type=local,dest=/workdir
-	push: false
+        output: type=local,dest=./output
+        push: false
         platforms: linux/amd64
+
+    - name: List output directory for debugging
+      run: ls -R ./output
 
     - name: Upload hello_cargo binary artifact
       uses: actions/upload-artifact@v3
       with:
         name: hello_cargo
-        path: /workdir/hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo
+        path: ./output/hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo
+

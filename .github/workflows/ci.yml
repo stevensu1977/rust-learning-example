@@ -15,18 +15,22 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v3
 
-    - name: Install Rust with musl target
-      run: |
-        rustup target add x86_64-unknown-linux-musl
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
     - name: Build hello_cargo
-      run: |
-        cd hello_cargo
-        cargo build --release --target x86_64-unknown-linux-musl
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: Dockerfile
+        build-args: |
+          PROJECT_DIR=hello_cargo
+        output: type=local,dest=/workdir
+	push: false
+        platforms: linux/amd64
 
     - name: Upload hello_cargo binary artifact
       uses: actions/upload-artifact@v3
       with:
         name: hello_cargo
-        path: hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo
-
+        path: /workdir/hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo

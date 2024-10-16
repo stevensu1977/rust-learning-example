@@ -29,7 +29,7 @@ jobs:
         pwd
         ls -la
         echo "######"
-        ls /__w/hello_cargo/hello_cargo/target/x86_64-unknown-linux-musl/release
+        ls /__w/rust-learning-example/rust-learning-example/hello_cargo/target/x86_64-unknown-linux-musl/release
         echo "######"
         ls target/x86_64-unknown-linux-musl/release
 

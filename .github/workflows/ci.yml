@@ -11,6 +11,8 @@ on:
 jobs:
   build-hello-cargo:
     runs-on: ubuntu-latest
+    container:
+      image: clux/muslrust:stable
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3

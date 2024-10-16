@@ -28,6 +28,9 @@ jobs:
         cargo build --release --target x86_64-unknown-linux-musl
         pwd
         ls -la
+        echo "######"
+        ls /__w/hello_cargo/hello_cargo/target/x86_64-unknown-linux-musl/release
+        echo "######"
         ls target/x86_64-unknown-linux-musl/release
 
     - name: Upload hello_cargo binary artifact

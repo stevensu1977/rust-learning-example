@@ -32,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: hello_cargo
-        path: ./hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo
+        path: /workdir/hello_cargo/target/x86_64-unknown-linux-musl/release/hello_cargo
